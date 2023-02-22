@@ -1,0 +1,17 @@
+<ul>
+    {% for tag in menu %}
+        {% if tag.tag.pk == cat_selected %}
+            <li>{{tag.name}}</li>
+        {% else %}
+            <li><a href="{{ tag.absolute_url }}">{{tag.name}}</a></li>
+        {% endif %}
+        {% if tag.children %}
+            {% with tag.children as menu %}
+                {% include "task/menu.html" %}
+            {% endwith %}
+
+        {% endif %}
+
+    {% endfor %}
+
+</ul>
